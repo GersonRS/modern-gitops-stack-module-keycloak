@@ -3,12 +3,12 @@ apiVersion: k8s.keycloak.org/v2alpha1
 kind: Keycloak
 metadata:
   name: keycloak
-  labels: { { - include "gitops-stack-module-keycloak.labels" $ | indent 4 } }
+  labels: {{ - include "gitops-stack-module-keycloak.labels" $ | indent 4 }}
 spec:
   instances: 1
   db:
-    vendor: { { .Values.keycloak.database.vendor } }
-    host: { { .Values.keycloak.database.host } }
+    vendor: {{ .Values.keycloak.database.vendor }}
+    host: {{ .Values.keycloak.database.host }}
     usernameSecret:
       name: keycloak-db-secret
       key: username
