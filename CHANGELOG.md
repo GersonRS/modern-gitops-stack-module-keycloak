@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v1.1.0...v1.2.0) (2024-04-26)
+
+
+### Features
+
+* pull request template ([ad204bd](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/ad204bd96fe3f271621033d19473d6d35ad7738e))
+* update pull request template ([6de13dc](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/6de13dc87093f97d40908e16b24c55cf2a19a32a))
+
 ## [1.1.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v1.0.0...v1.1.0) (2024-04-26)
 
 
