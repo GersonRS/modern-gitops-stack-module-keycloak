@@ -163,9 +163,11 @@ The following providers are used by this module:
 
 - [[provider_null]] <<provider_null,null>> (>= 3)
 
+- [[provider_random]] <<provider_random,random>> (>= 3)
+
 - [[provider_keycloak]] <<provider_keycloak,keycloak>> (>= 4)
 
-- [[provider_random]] <<provider_random,random>> (>= 3)
+- [[provider_external]] <<provider_external,external>>
 
 === Resources
 
@@ -176,15 +178,32 @@ The following resources are used by this module:
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_default_scopes[keycloak_openid_client_default_scopes.client_default_scopes] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope[keycloak_openid_client_scope.modern_gitops_stack_groups] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope[keycloak_openid_client_scope.modern_gitops_stack_minio_policy] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope[keycloak_openid_client_scope.modern_gitops_stack_username] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_group_membership_protocol_mapper[keycloak_openid_group_membership_protocol_mapper.modern_gitops_stack_groups] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_attribute_protocol_mapper[keycloak_openid_user_attribute_protocol_mapper.modern_gitops_stack_minio_policy] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_attribute_protocol_mapper[keycloak_openid_user_attribute_protocol_mapper.modern_gitops_stack_username] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/realm[keycloak_realm.modern_gitops_stack] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role[keycloak_role.gitlab_role_access] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role[keycloak_role.gitlab_role_external] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client[keycloak_saml_client.gitlab] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_default_scopes[keycloak_saml_client_default_scopes.client_default_scopes] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_email] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_first_name] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_last_name] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_name] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_roles] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_email_property] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_first_name_property] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_last_name_property] (resource)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_name_property] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/user[keycloak_user.modern_gitops_stack_users] (resource)
 - https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/user_groups[keycloak_user_groups.modern_gitops_stack_admins] (resource)
 - https://registry.terraform.io/providers/null/latest/docs/resources/resource[null_resource.dependencies] (resource)
 - https://registry.terraform.io/providers/null/latest/docs/resources/resource[null_resource.this] (resource)
 - https://registry.terraform.io/providers/random/latest/docs/resources/password[random_password.client_secret] (resource)
 - https://registry.terraform.io/providers/random/latest/docs/resources/password[random_password.modern_gitops_stack_users] (resource)
+- https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external[external_external.fingerprint_generator] (data source)
+- https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/realm_keys[keycloak_realm_keys.realm_keys] (data source)
 
 === Required Inputs
 
@@ -263,7 +282,7 @@ Default:
 [source,json]
 ----
 {
-  "moderngitopsadmin": {
+  "modern-gitopsadmin": {
     "email": "moderngitopsadmin@modern-gitops-stack.io",
     "first_name": "Administrator",
     "last_name": "Modern GitOps Stack",
@@ -287,6 +306,10 @@ Description: Object containing multiple OIDC configuration values.
 ==== [[output_modern_gitops_stack_users_passwords]] <<output_modern_gitops_stack_users_passwords,modern_gitops_stack_users_passwords>>
 
 Description: Map containing the credentials of each created user.
+
+==== [[output_certificate]] <<output_certificate,certificate>>
+
+Description: show certificate of first key:
 // END_TF_DOCS
 
 === Reference in table format 
@@ -310,9 +333,10 @@ Description: Map containing the credentials of each created user.
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_keycloak]] <<provider_keycloak,keycloak>> |>= 4
-|[[provider_random]] <<provider_random,random>> |>= 3
 |[[provider_null]] <<provider_null,null>> |>= 3
+|[[provider_random]] <<provider_random,random>> |>= 3
+|[[provider_keycloak]] <<provider_keycloak,keycloak>> |>= 4
+|[[provider_external]] <<provider_external,external>> |n/a
 |===
 
 = Resources
@@ -325,15 +349,32 @@ Description: Map containing the credentials of each created user.
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_default_scopes[keycloak_openid_client_default_scopes.client_default_scopes] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope[keycloak_openid_client_scope.modern_gitops_stack_groups] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope[keycloak_openid_client_scope.modern_gitops_stack_minio_policy] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope[keycloak_openid_client_scope.modern_gitops_stack_username] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_group_membership_protocol_mapper[keycloak_openid_group_membership_protocol_mapper.modern_gitops_stack_groups] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_attribute_protocol_mapper[keycloak_openid_user_attribute_protocol_mapper.modern_gitops_stack_minio_policy] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_attribute_protocol_mapper[keycloak_openid_user_attribute_protocol_mapper.modern_gitops_stack_username] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/realm[keycloak_realm.modern_gitops_stack] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role[keycloak_role.gitlab_role_access] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role[keycloak_role.gitlab_role_external] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client[keycloak_saml_client.gitlab] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_default_scopes[keycloak_saml_client_default_scopes.client_default_scopes] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_email] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_first_name] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_last_name] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_name] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_client_scope[keycloak_saml_client_scope.modern_gitops_stack_roles] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_email_property] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_first_name_property] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_last_name_property] |resource
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/saml_user_property_protocol_mapper[keycloak_saml_user_property_protocol_mapper.gitlab_name_property] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/user[keycloak_user.modern_gitops_stack_users] |resource
 |https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/user_groups[keycloak_user_groups.modern_gitops_stack_admins] |resource
 |https://registry.terraform.io/providers/null/latest/docs/resources/resource[null_resource.dependencies] |resource
 |https://registry.terraform.io/providers/null/latest/docs/resources/resource[null_resource.this] |resource
 |https://registry.terraform.io/providers/random/latest/docs/resources/password[random_password.client_secret] |resource
 |https://registry.terraform.io/providers/random/latest/docs/resources/password[random_password.modern_gitops_stack_users] |resource
+|https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external[external_external.fingerprint_generator] |data source
+|https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/realm_keys[keycloak_realm_keys.realm_keys] |data source
 |===
 
 = Inputs
@@ -404,7 +445,7 @@ map(object({
 [source]
 ----
 {
-  "moderngitopsadmin": {
+  "modern-gitopsadmin": {
     "email": "moderngitopsadmin@modern-gitops-stack.io",
     "first_name": "Administrator",
     "last_name": "Modern GitOps Stack",
@@ -425,6 +466,7 @@ map(object({
 |[[output_id]] <<output_id,id>> |ID to pass other modules in order to refer to this module as a dependency.
 |[[output_oidc]] <<output_oidc,oidc>> |Object containing multiple OIDC configuration values.
 |[[output_modern_gitops_stack_users_passwords]] <<output_modern_gitops_stack_users_passwords,modern_gitops_stack_users_passwords>> |Map containing the credentials of each created user.
+|[[output_certificate]] <<output_certificate,certificate>> |show certificate of first key:
 |===
 // END_TF_TABLES
 ====
