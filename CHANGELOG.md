@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.4.0...v2.5.0) (2025-01-18)
+
+
+### 🚀 New Features
+
+* update project ([148f7df](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/148f7df02d4135780ecd61655ec4fcc7c84d4318))
+
 ## [2.4.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.3.0...v2.4.0) (2024-05-01)
 
 
