@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.1](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.5.0...v2.5.1) (2025-02-08)
+
+
+### ⌨️ Code Refactoring
+
+* adjust workflows ([204f02d](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/204f02df3fade691e4f4d74954338928f29e2ebf))
+* try adjust code 5 ([fbbb9a1](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/fbbb9a131b48f8391bf5c58b96f76e0646c9af69))
+
 ## [2.5.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.4.0...v2.5.0) (2025-01-18)
 
 
