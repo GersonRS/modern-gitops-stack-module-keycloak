@@ -169,7 +169,7 @@ resource "argocd_application" "this" {
 resource "null_resource" "wait_for_keycloak" {
   provisioner "local-exec" {
     command = <<EOT
-    while [ $(curl -k https://keycloak.${trimprefix("${var.subdomain}.${var.cluster_name}", ".")}.${var.base_domain} -I -s | head -n 1 | cut -d' ' -f2) != '200' ]; do
+    while [ $(curl -k https://keycloak.${trimprefix("${var.subdomain}", ".")}.${var.base_domain} -I -s | head -n 1 | cut -d' ' -f2) != '302' ]; do
       sleep 5
     done
     EOT

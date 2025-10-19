@@ -18,11 +18,19 @@ spec:
       key: password
   hostname:
     strict: false
+    hostname: {{ .Values.keycloak.ingress.host | quote }}
   http:
-    httpEnabled: true # Use HTTP since we use Traefik as a reverse proxy for HTTPS
+    httpEnabled: false
+    httpsPort: 8443
+    tlsSecret: keycloak-tls-secret
   ingress:
     enabled: false
+  proxy:
+    headers: xforwarded
   serviceMonitor:
     enabled: {{ .Values.keycloak.serviceMonitor.enabled | default false }}
     interval: 10s
     scrapeTimeout: 5s
+  additionalOptions:
+    - name: proxy
+      value: reencrypt
