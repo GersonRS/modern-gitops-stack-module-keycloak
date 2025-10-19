@@ -11,7 +11,6 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  ingressClassName: {{ .Values.keycloak.ingress.ingressClassName }}
   rules:
    {{- range .Values.keycloak.ingress.hosts }}
     - host: {{ .host | quote }}
@@ -24,6 +23,7 @@ spec:
               name: keycloak
               port:
                 number: 8080
+    {{- end }}
   {{- if .Values.keycloak.ingress.tls }}
   tls:
     {{- range .Values.keycloak.ingress.tls }}
