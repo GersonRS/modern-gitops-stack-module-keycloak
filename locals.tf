@@ -4,17 +4,13 @@ locals {
       name = "keycloak"
       # Database creds are shown in tfm plan.
       # TODO manage this. Proposal: create namespace and secret before app.
-      database = var.database != null ? merge(var.database, {
-        create   = false
-        username = base64encode(var.database.username)
-        password = base64encode(var.database.password)
-        }) : {
-        # TODO doc that the fallback map (experimental ephemeral postgresql server) should never be used in production.
-        create   = true
-        vendor   = "postgres"
-        username = base64encode("postgres")
-        password = base64encode(random_password.db_password.0.result)
-        host     = "keycloak-postgres-db"
+      database = {
+        host     = var.database.host
+        username = var.database.username
+        password = var.database.password
+      }
+      serviceMonitor = {
+        enabled = var.enable_service_monitor
       }
       ingress = {
         enabled = true

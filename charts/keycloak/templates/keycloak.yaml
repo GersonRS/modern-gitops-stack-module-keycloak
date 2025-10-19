@@ -8,17 +8,28 @@ metadata:
 spec:
   instances: 1
   db:
-    vendor: {{ .Values.keycloak.database.vendor }}
+    vendor: postgres
     host: {{ .Values.keycloak.database.host }}
     usernameSecret:
-      name: keycloak-db-secret
+      name: postgresql-secrets
       key: username
     passwordSecret:
-      name: keycloak-db-secret
+      name: postgresql-secrets
       key: password
-  http:
-    httpEnabled: true # Use HTTP since we use Traefik as a reverse proxy for HTTPS
   hostname:
-    strict: false
+    hostname: {{ .Values.keycloak.ingress.host | quote }}
+  http:
+    httpEnabled: false
+    httpsPort: 8443
+    tlsSecret: keycloak-tls-secret
   ingress:
     enabled: false
+  proxy:
+    headers: xforwarded
+  serviceMonitor:
+    enabled: {{ .Values.keycloak.serviceMonitor.enabled | default false }}
+    interval: 10s
+    scrapeTimeout: 5s
+  additionalOptions:
+    - name: proxy
+      value: reencrypt
