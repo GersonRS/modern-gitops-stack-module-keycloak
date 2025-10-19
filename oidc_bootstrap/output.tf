@@ -18,6 +18,6 @@ output "modern_gitops_stack_users_passwords" {
 }
 
 # show certificate of first key:
-output "certificate" {
-  value = data.keycloak_realm_keys.realm_keys.keys[0].certificate
-}
+# output "certificate" {
+#   value = data.keycloak_realm_keys.realm_keys.keys[0].certificate
+# }
