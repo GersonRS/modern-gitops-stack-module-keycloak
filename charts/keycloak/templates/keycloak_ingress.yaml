@@ -5,6 +5,8 @@ kind: Ingress
 metadata:
   name: keycloak
   {{- with .Values.keycloak.ingress.annotations }}
+  labels:
+    {{- include "modern-gitops-stack-module-keycloak.labels" $ | indent 4 }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -18,7 +20,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: keycloak
+              name: keycloak-service
               port:
                 number: 8080
     {{- end }}
