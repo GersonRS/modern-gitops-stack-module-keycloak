@@ -22,3 +22,7 @@ spec:
     httpEnabled: true # Use HTTP since we use Traefik as a reverse proxy for HTTPS
   ingress:
     enabled: false
+  serviceMonitor:
+    enabled: {{ .Values.keycloak.serviceMonitor.enabled | default false }}
+    interval: 10s
+    scrapeTimeout: 5s

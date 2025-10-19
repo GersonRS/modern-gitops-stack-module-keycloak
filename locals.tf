@@ -5,11 +5,12 @@ locals {
       replicas = var.replicas
       # Database creds are shown in tfm plan.
       # TODO manage this. Proposal: create namespace and secret before app.
-      database = var.database != null ? merge(var.database, {
+      database = var.database != null ? {
         create   = false
+        host     = var.database.host
         username = base64encode(var.database.username)
         password = base64encode(var.database.password)
-        }) : {
+        } : {
         # TODO doc that the fallback map (experimental ephemeral postgresql server) should never be used in production.
         create   = true
         vendor   = "postgres"
