@@ -22,12 +22,3 @@ spec:
     strict: false
   ingress:
     enabled: false
-  proxy:
-    headers: xforwarded
-  serviceMonitor:
-    enabled: {{ .Values.keycloak.serviceMonitor.enabled | default false }}
-    interval: 10s
-    scrapeTimeout: 5s
-  additionalOptions:
-    - name: proxy
-      value: reencrypt
