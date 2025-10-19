@@ -11,10 +11,10 @@ spec:
     vendor: postgres
     host: {{ .Values.keycloak.database.host }}
     usernameSecret:
-      name: postgresql-secrets
+      name: keycloak-db-secret
       key: username
     passwordSecret:
-      name: postgresql-secrets
+      name: keycloak-db-secret
       key: password
   http:
     httpEnabled: true # Use HTTP since we use Traefik as a reverse proxy for HTTPS
