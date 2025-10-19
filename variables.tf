@@ -61,6 +61,12 @@ variable "helm_values" {
   default     = []
 }
 
+variable "replicas" {
+  description = "Number of keycloak pods to be deployed."
+  type        = number
+  default     = 1
+}
+
 variable "app_autosync" {
   description = "Automated sync options for the Argo CD Application resource."
   type = object({
@@ -88,10 +94,10 @@ variable "dependency_ids" {
 variable "database" {
   description = "Keycloak external database server configuration."
   type = object({
-    vendor   = string
     host     = string
     username = string
     password = string
   })
-  default = null
+  default   = null
+  sensitive = true
 }

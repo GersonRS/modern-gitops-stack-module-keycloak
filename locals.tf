@@ -1,7 +1,8 @@
 locals {
   helm_values = [{
     keycloak = {
-      name = "keycloak"
+      name     = "keycloak"
+      replicas = var.replicas
       # Database creds are shown in tfm plan.
       # TODO manage this. Proposal: create namespace and secret before app.
       database = {

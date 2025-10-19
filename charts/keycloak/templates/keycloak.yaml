@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "modern-gitops-stack-module-keycloak.labels" $ | indent 4 }}
 spec:
-  instances: 1
+  instances: {{ .Values.keycloak.replicas }}
   db:
     vendor: postgres
     host: {{ .Values.keycloak.database.host }}
@@ -16,12 +16,10 @@ spec:
     passwordSecret:
       name: postgresql-secrets
       key: password
-  hostname:
-    hostname: {{ .Values.keycloak.ingress.host | quote }}
   http:
-    httpEnabled: false
-    httpsPort: 8443
-    tlsSecret: keycloak-tls-secret
+    httpEnabled: true # Use HTTP since we use Traefik as a reverse proxy for HTTPS
+  hostname:
+    strict: false
   ingress:
     enabled: false
   proxy:
