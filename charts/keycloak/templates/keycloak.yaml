@@ -17,7 +17,6 @@ spec:
       name: keycloak-db-secret
       key: password
   hostname:
-    strict: false
     hostname: {{ .Values.keycloak.ingress.host | quote }}
   http:
     httpEnabled: false
