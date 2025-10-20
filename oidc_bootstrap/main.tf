@@ -252,9 +252,6 @@ resource "keycloak_user" "modern_gitops_stack_users" {
   last_name      = each.value.last_name
   email          = each.value.email
   email_verified = true
-  attributes = {
-    "terraform" = "true"
-  }
 }
 
 resource "keycloak_user_groups" "modern_gitops_stack_admins" {
