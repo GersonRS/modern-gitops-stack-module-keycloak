@@ -55,14 +55,14 @@ resource "keycloak_saml_client" "gitlab" {
   sign_documents                = true
   signature_key_name            = "KEY_ID"
   signature_algorithm           = "RSA_SHA256"
-  root_url                      = "https://${local.domain_full}"
-  master_saml_processing_url    = "https://${local.domain_full}/users/auth/saml/callback"
+  root_url                      = "https://${local.gitlab_domain}"
+  master_saml_processing_url    = "https://${local.gitlab_domain}/users/auth/saml/callback"
   login_theme                   = "keycloak"
   idp_initiated_sso_url_name    = "gitlab"
-  idp_initiated_sso_relay_state = local.domain_full
+  idp_initiated_sso_relay_state = local.gitlab_domain
   valid_redirect_uris = [
-    "https://${local.domain_full}/*",
-    "https://${local.domain_full}/users/auth/saml/callback",
+    "https://${local.gitlab_domain}/*",
+    "https://${local.gitlab_domain}/users/auth/saml/callback",
   ]
 }
 
@@ -252,9 +252,6 @@ resource "keycloak_user" "modern_gitops_stack_users" {
   last_name      = each.value.last_name
   email          = each.value.email
   email_verified = true
-  attributes = {
-    "terraform" = "true"
-  }
 }
 
 resource "keycloak_user_groups" "modern_gitops_stack_admins" {
