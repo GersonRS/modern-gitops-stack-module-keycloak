@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.6.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.5.1...v2.6.0) (2025-10-20)
+
+
+### 🚀 New Features
+
+* add copilot instructions and update module configuration ([da12a40](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/da12a407ed1517d953049470cab0660f9efe0c0b))
+* add service monitor ([84159ab](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/84159abd4bfca165e07d2f34726a3da2bff2caf2))
+* adjust code ([125e7c8](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/125e7c8576f7de035794bd7177cd10183574b4b8))
+* ajust code ([556ab45](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/556ab450fcb58ab9533d4c6f0ac273661a49bb79))
+* enhance keycloak ingress template ([8001710](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/8001710748ced5b2bc9a303fcc2dc75b9400259e))
+* hidden somethings ([918942d](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/918942dcfec7fa66378973fb9d218e16f0b92c65))
+* merge develop into main - OIDC bootstrap improvements and configuration updates ([b29816b](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/b29816b6f9d07bffa45430a68bea5fd1f3cb41ca))
+* module rollback ([e92c59d](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/e92c59d2817a629e3879ad79fc9b7538be8bdacb))
+* test without proxy ([0cdf201](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/0cdf2018817c52e1c3af9adc2144b261e2336992))
+* update code ([8ba55d1](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/8ba55d1d32344c69dc8c7abbf76674d2e546d994))
+* update code ([f553ed7](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/f553ed73173daaccfe8998bd68f068d2920255e1))
+* update operator and keycloak ([2fdda79](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/2fdda79452a72b2b79a49a25a2154da9dfdca180))
+
+
+### 🔥 Bug Fixes
+
+* adjust service name ([219163b](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/219163be871cf679e24eaaf0d07418de1ab9c2eb))
+* improve fingerprint generator script robustness ([c2407f0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/c2407f0a980157ca69157760bab30731381a79a3))
+* update keycloak ingress configuration ([a22b833](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/a22b833adac3b508757f76c2e63612863f95cdd6))
+* update oidc_bootstrap locals configuration ([d335023](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/d335023a5ca70ebf0fd254edef7e077e6e14f29b))
+
+
+### ⌨️ Code Refactoring
+
+* update keycloak configuration and chart templates ([5fa7b15](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/5fa7b159e4a416b75b056e4d1ed478bd28177638))
+* update oidc_bootstrap configuration ([df679d0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/df679d0ace404e512e9710fc0bbdcc74c34ba353))
+
 ## [2.5.1](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.5.0...v2.5.1) (2025-02-08)
 
 

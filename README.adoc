@@ -181,7 +181,7 @@ Description: Override of target revision of the application chart.
 
 Type: `string`
 
-Default: `"v2.5.1"`
+Default: `"v2.6.0"`
 
 ==== [[input_cluster_issuer]] <<input_cluster_issuer,cluster_issuer>>
 
@@ -191,6 +191,14 @@ Type: `string`
 
 Default: `"selfsigned-issuer"`
 
+==== [[input_enable_service_monitor]] <<input_enable_service_monitor,enable_service_monitor>>
+
+Description: Enable Prometheus ServiceMonitor in the Helm chart.
+
+Type: `bool`
+
+Default: `false`
+
 ==== [[input_helm_values]] <<input_helm_values,helm_values>>
 
 Description: Helm chart value overrides. They should be passed as a list of HCL structures.
@@ -198,6 +206,14 @@ Description: Helm chart value overrides. They should be passed as a list of HCL 
 Type: `any`
 
 Default: `[]`
+
+==== [[input_replicas]] <<input_replicas,replicas>>
+
+Description: Number of keycloak pods to be deployed.
+
+Type: `number`
+
+Default: `1`
 
 ==== [[input_app_autosync]] <<input_app_autosync,app_autosync>>
 
@@ -239,7 +255,6 @@ Type:
 [source,hcl]
 ----
 object({
-    vendor   = string
     host     = string
     username = string
     password = string
@@ -285,8 +300,8 @@ Description: Credentials for the administrator user of the master realm created 
 |===
 |Name |Version
 |[[provider_random]] <<provider_random,random>> |>= 3
-|[[provider_utils]] <<provider_utils,utils>> |>= 1
 |[[provider_argocd]] <<provider_argocd,argocd>> |>= 6
+|[[provider_utils]] <<provider_utils,utils>> |>= 1
 |[[provider_null]] <<provider_null,null>> |>= 3
 |[[provider_kubernetes]] <<provider_kubernetes,kubernetes>> |>= 2
 |===
@@ -351,7 +366,7 @@ Description: Credentials for the administrator user of the master realm created 
 |[[input_target_revision]] <<input_target_revision,target_revision>>
 |Override of target revision of the application chart.
 |`string`
-|`"v2.5.1"`
+|`"v2.6.0"`
 |no
 
 |[[input_cluster_issuer]] <<input_cluster_issuer,cluster_issuer>>
@@ -360,10 +375,22 @@ Description: Credentials for the administrator user of the master realm created 
 |`"selfsigned-issuer"`
 |no
 
+|[[input_enable_service_monitor]] <<input_enable_service_monitor,enable_service_monitor>>
+|Enable Prometheus ServiceMonitor in the Helm chart.
+|`bool`
+|`false`
+|no
+
 |[[input_helm_values]] <<input_helm_values,helm_values>>
 |Helm chart value overrides. They should be passed as a list of HCL structures.
 |`any`
 |`[]`
+|no
+
+|[[input_replicas]] <<input_replicas,replicas>>
+|Number of keycloak pods to be deployed.
+|`number`
+|`1`
 |no
 
 |[[input_app_autosync]] <<input_app_autosync,app_autosync>>
@@ -405,7 +432,6 @@ object({
 [source]
 ----
 object({
-    vendor   = string
     host     = string
     username = string
     password = string
