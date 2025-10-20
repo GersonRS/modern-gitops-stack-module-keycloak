@@ -3,10 +3,17 @@ locals {
     keycloak = {
       name     = "keycloak"
       replicas = var.replicas
-      database = {
+      database = var.database != null ? {
+        create   = false
         host     = var.database.host
         username = base64encode(var.database.username)
         password = base64encode(var.database.password)
+        } : {
+        # TODO doc that the fallback map (experimental ephemeral postgresql server) should never be used in production.
+        create   = true
+        host     = "keycloak-postgres-db"
+        username = base64encode("postgres")
+        password = base64encode(random_password.db_password.0.result)
       }
       serviceMonitor = {
         enabled = var.enable_service_monitor
