@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.7.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.6.0...v2.7.0) (2025-10-20)
+
+
+### 🚀 New Features
+
+* enhance oidc_bootstrap main configuration ([00a0442](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/00a04421be24c23e3b02e729b20863493f7a8ff1))
+* OIDC bootstrap enhancements and configuration improvements ([2ba382e](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/commit/2ba382e6a595db9225db898cd4cd85560d3fa5be))
+
 ## [2.6.0](https://github.com/GersonRS/modern-gitops-stack-module-keycloak/compare/v2.5.1...v2.6.0) (2025-10-20)
 
 
