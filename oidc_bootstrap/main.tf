@@ -266,12 +266,12 @@ resource "keycloak_user_groups" "modern_gitops_stack_admins" {
 
 resource "null_resource" "this" {
   depends_on = [
-    keycloak_realm.modern_gitops_stack,
-    keycloak_group.modern_gitops_stack_admins,
-    keycloak_user.modern_gitops_stack_users,
-    keycloak_user_groups.modern_gitops_stack_admins,
-    keycloak_saml_client_default_scopes.client_default_scopes,
-    keycloak_openid_client_default_scopes.client_default_scopes
+    resource.keycloak_realm.modern_gitops_stack,
+    resource.keycloak_group.modern_gitops_stack_admins,
+    resource.keycloak_user.modern_gitops_stack_users,
+    resource.keycloak_user_groups.modern_gitops_stack_admins,
+    resource.keycloak_saml_client_default_scopes.client_default_scopes,
+    resource.keycloak_openid_client_default_scopes.client_default_scopes
   ]
 }
 
@@ -279,6 +279,9 @@ resource "null_resource" "this" {
 data "keycloak_realm_keys" "realm_keys" {
   realm_id   = resource.keycloak_realm.modern_gitops_stack.id
   algorithms = ["RS256"]
+  depends_on = [
+    resource.keycloak_realm.modern_gitops_stack
+  ]
 }
 
 # resource "ah_ssh_key" "realm_keys_fingerprint" {
@@ -292,4 +295,7 @@ data "external" "fingerprint_generator" {
   query = {
     cert = "-----BEGIN CERTIFICATE-----\n${data.keycloak_realm_keys.realm_keys.keys[0].certificate}\n-----END CERTIFICATE-----"
   }
+  depends_on = [
+    data.keycloak_realm_keys.realm_keys
+  ]
 }
