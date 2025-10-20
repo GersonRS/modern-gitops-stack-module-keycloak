@@ -289,10 +289,10 @@ data "keycloak_realm_keys" "realm_keys" {
 #   public_key = data.keycloak_realm_keys.realm_keys.keys[0].certificate
 # }
 
-# data "external" "fingerprint_generator" {
-#   program = ["bash", "${path.module}/t.sh"]
+data "external" "fingerprint_generator" {
+  program = ["bash", "${path.module}/t.sh"]
 
-#   query = {
-#     cert = "-----BEGIN CERTIFICATE-----\n${data.keycloak_realm_keys.realm_keys.keys[0].certificate}\n-----END CERTIFICATE-----"
-#   }
-# }
+  query = {
+    cert = "-----BEGIN CERTIFICATE-----\n${data.keycloak_realm_keys.realm_keys.keys[0].certificate}\n-----END CERTIFICATE-----"
+  }
+}
