@@ -20,7 +20,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: keycloak
+            name: keycloak-service
             port:
               number: 8080
   {{- if .Values.keycloak.ingress.tls }}

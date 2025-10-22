@@ -17,8 +17,19 @@ spec:
       name: keycloak-db-secret
       key: password
   http:
-    httpEnabled: true # Use HTTP since we use Traefik as a reverse proxy for HTTPS
+    httpEnabled: true
   hostname:
-    strict: false
+    hostname: {{ .Values.keycloak.ingress.host | quote }}
   ingress:
-    enabled: false
+    enabled: {{ .Values.keycloak.ingress.enabled }}
+    tlsSecret: keycloak-tls-secret
+    {{- with .Values.keycloak.ingress.annotations }}
+    annotations:
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  proxy:
+    headers: xforwarded
+  serviceMonitor:
+    enabled: {{ .Values.keycloak.serviceMonitor.enabled | default false }}
+    interval: 10s
+    scrapeTimeout: 5s
