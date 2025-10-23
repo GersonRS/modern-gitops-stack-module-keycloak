@@ -17,7 +17,7 @@ spec:
       name: keycloak-db-secret
       key: password
   http:
-    httpEnabled: false
+    httpEnabled: true
     httpsPort: 8443
     tlsSecret: keycloak-tls-secret
   hostname:
@@ -30,3 +30,5 @@ spec:
     enabled: {{ .Values.keycloak.serviceMonitor.enabled | default false }}
     interval: 10s
     scrapeTimeout: 5s
+  networkPolicy:
+    enabled: false
