@@ -21,7 +21,9 @@ locals {
       ingress = {
         enabled = true
         annotations = {
-          "cert-manager.io/cluster-issuer" = "${var.cluster_issuer}"
+          "cert-manager.io/cluster-issuer"                   = "${var.cluster_issuer}"
+          "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
+          "traefik.ingress.kubernetes.io/router.tls"         = "true"
         }
         host = "keycloak.${trimprefix("${var.subdomain}", ".")}.${var.base_domain}"
         path = "/"
