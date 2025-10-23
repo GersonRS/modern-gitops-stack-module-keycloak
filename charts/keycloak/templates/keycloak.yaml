@@ -23,8 +23,10 @@ spec:
   ingress:
     enabled: {{ .Values.keycloak.ingress.enabled }}
     tlsSecret: keycloak-tls-secret
-    {{- with .Values.keycloak.ingress.annotations }}
     annotations:
+      "traefik.ingress.kubernetes.io/router.entrypoints": "websecure"
+      "traefik.ingress.kubernetes.io/router.tls": "true"
+    {{- with .Values.keycloak.ingress.annotations }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
   proxy:
