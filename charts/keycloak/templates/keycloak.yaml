@@ -17,16 +17,13 @@ spec:
       name: keycloak-db-secret
       key: password
   http:
-    httpEnabled: true
+    httpEnabled: false
+    httpsPort: 8443
+    tlsSecret: keycloak-tls-secret
   hostname:
     hostname: {{ .Values.keycloak.ingress.host | quote }}
   ingress:
-    enabled: {{ .Values.keycloak.ingress.enabled }}
-    tlsSecret: keycloak-tls-secret
-    {{- with .Values.keycloak.ingress.annotations }}
-    annotations:
-      {{- toYaml . | nindent 6 }}
-    {{- end }}
+    enabled: false
   proxy:
     headers: xforwarded
   serviceMonitor:
